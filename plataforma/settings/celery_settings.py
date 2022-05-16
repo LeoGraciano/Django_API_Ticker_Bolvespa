@@ -4,10 +4,10 @@ from django.conf import settings
 CELERY_RESULT_BACKEND = 'django-db'
 
 
-if settings.DEBUG:
-    CELERY_BROKER_URL = 'redis://localhost:6379'
-else:
-    CELERY_BROKER_URL =  'redis://'
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+
+# CELERY_BROKER_URL =  'redis://'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
