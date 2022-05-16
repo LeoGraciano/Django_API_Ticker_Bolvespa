@@ -156,4 +156,5 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 CONTACT_EMAIL = config('CONTACT_EMAIL')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 django_on_heroku.settings(locals())
