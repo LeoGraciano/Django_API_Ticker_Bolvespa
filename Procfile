@@ -1,4 +1,4 @@
 web: gunicorn plataforma.wsgi --log-file -
-python manage.py collectstatic --noinput
-python manage.py makemigrations
-python manage.py migrate
+relase: python manage.py collectstatic --noinput
+relase: python manage.py makemigrations
+relase: python manage.py migrate
