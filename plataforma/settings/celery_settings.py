@@ -1,6 +1,7 @@
 
 from django.conf  import settings
 import os
+import kombu
 
 if settings.DEBUG:
 
@@ -23,8 +24,6 @@ else:
     CELERY_ACCEPT_CONTENT = ["json", "msgpack"]
     CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
-    if BROKER_URL == "django://":
-        settings.INSTALLED_APPS += ("kombu.transport.django",)
 
     BROKER_TRANSPORT_OPTIONS = {
         "max_connections": 2,
