@@ -1,5 +1,7 @@
 from pathlib import Path
-import osBASE_DIR = Path(__file__).resolve().parent.parent
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 DATABASES = {
     'default': {
