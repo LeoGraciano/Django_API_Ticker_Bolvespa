@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
 from decouple import config
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -14,13 +13,13 @@ CACHES = {
     },
 }
 
+STATIC_ROOT = config('STATIC_ROOT')
 STATIC_URL = config('STATIC_URL')
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-STATIC_ROOT = config('STATIC_ROOT')
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_URL = '/static/'
@@ -48,4 +47,3 @@ TEMPLATES = [
         },
     },
 ]
-

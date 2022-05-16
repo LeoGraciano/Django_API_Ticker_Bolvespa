@@ -12,7 +12,7 @@ sys.modules['celery.utils.encoding'] = encoding
 
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plataforma.settings.base')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plataforma.settings')
 
 app = Celery('plataforma')
 

@@ -3,8 +3,6 @@ from decouple import config
 
 SECRET_KEY = config('SECRET_KEY')
 
-
-
 AUTH_USER_MODEL = 'accounts.User'
 
 
