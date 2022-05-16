@@ -6,7 +6,7 @@ import pytz
 from apis.api_rapidapi_brapi import get_ticker, list_ticker
 import json
 from django.utils import timezone
-from nch_capital.utils.validation import isfloat
+from utils.validation import isfloat
 
 from .models import HistoricTicker, Ticker
 
