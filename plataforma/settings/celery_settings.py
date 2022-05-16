@@ -24,7 +24,7 @@ else:
     CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
     if BROKER_URL == "django://":
-        INSTALLED_APPS += ("kombu.transport.django",)
+        settings.INSTALLED_APPS += ("kombu.transport.django",)
 
     BROKER_TRANSPORT_OPTIONS = {
         "max_connections": 2,
