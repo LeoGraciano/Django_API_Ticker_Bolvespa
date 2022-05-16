@@ -78,16 +78,12 @@ TEMPLATES = [
     },
 ]
 
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -126,12 +122,18 @@ USE_L10N = True
 USE_TZ = True
 
 
-STATIC_ROOT = config('STATIC_ROOT')
-STATIC_URL = config('STATIC_URL')
+# STATIC_ROOT = config('STATIC_ROOT')
+# STATIC_URL = config('STATIC_URL')
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+# STATICFILES_DIRS = [
+#     BASE_DIR / 'static',
+# ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = 'redis://localhost:6379'
