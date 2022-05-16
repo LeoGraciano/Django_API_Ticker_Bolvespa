@@ -1,6 +1,7 @@
-import django_on_heroku
 from pathlib import Path
 from decouple import config
+import django_on_heroku
+django_on_heroku.settings(locals())
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -157,5 +158,3 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 CONTACT_EMAIL = config('CONTACT_EMAIL')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_on_heroku.settings(locals())
