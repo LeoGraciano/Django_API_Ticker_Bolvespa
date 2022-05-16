@@ -133,7 +133,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
