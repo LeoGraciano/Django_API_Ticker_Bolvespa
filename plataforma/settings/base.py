@@ -1,4 +1,4 @@
-import django_on_heroku
+# import django_on_heroku
 from .middleware_settings import *  # noqa: ignore=F401 isort:skip
 from .installed_apps_settings import *  # noqa: ignore=F401 isort:skip
 from .internationalizations_settings import *  # noqa: ignore=F401 isort:skip
@@ -24,6 +24,6 @@ DJANGO_SETTINGS_MODULE = config('DJANGO_SETTINGS_MODULE')
 ROOT_URLCONF = 'plataforma.urls'
 
 WSGI_APPLICATION = 'plataforma.wsgi.application'
-django_on_heroku.settings(locals())
+# django_on_heroku.settings(locals())
 
 

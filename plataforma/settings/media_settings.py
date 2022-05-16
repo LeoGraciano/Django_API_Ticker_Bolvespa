@@ -14,19 +14,19 @@ CACHES = {
     },
 }
 
-# STATIC_URL = config('STATIC_URL')
+STATIC_URL = config('STATIC_URL')
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / 'static',
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
-# STATIC_ROOT = config('STATIC_ROOT')
+STATIC_ROOT = config('STATIC_ROOT')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'static'),
+# )
 
 MEDIA_URL = config('MEDIA_URL')
 
