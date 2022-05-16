@@ -1,5 +1,5 @@
 
-from nch_capital.utils.validation import isfloat
+from utils.validation import isfloat
 from decimal import Decimal
 import json
 from django.utils.translation import ugettext_lazy as _
