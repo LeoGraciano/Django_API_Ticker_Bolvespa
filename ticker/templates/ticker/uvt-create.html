@@ -1,0 +1,51 @@
+{% load static bootstrap5 %}
+
+<form method="post" action="{% url 'ticker_create' %}" class="js-uvt-create-form" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">Incluir Empresa</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div id='search-input'>
+            {% bootstrap_form form %}
+            <datalist id="datalistOptions">
+
+            </datalist>
+            <ul class='autocomplete-result-list'
+                style='background-color: #FFFFFF; padding-top:20px;padding-bottom: 20px; border-radius: 0 0 15px 15px; position: relative; z-index: 9999; color:#000;'
+                id="autocomplete-result-list-menu">
+            </ul>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+
+</form>
+
+<script src="{% static 'assets/js/autocomplete/autocomplete.js' %}"></script>
+<script src="{% static 'assets/js/autocomplete/option_menu.js' %}"></script>
+
+<script>
+    new Autocomplete('#search-input', {
+        search: input => {
+            if (input.length < 3) {
+                return []
+            }
+            (option_menu())
+            return option_menu()
+            /*const url = `{% url 'ticker_search' %}?s=${input}`
+            console.log(url)
+            return new Promise(resolve => {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        resolve()
+                    })
+            })*/
+        }
+    })
+</script>

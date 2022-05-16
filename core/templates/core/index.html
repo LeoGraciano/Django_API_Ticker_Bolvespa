@@ -1,0 +1,116 @@
+{% extends 'core/base.html' %}
+{% load static bootstrap5 custom_filters %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+
+{% block content %}
+<style>
+    span.text-muted {
+        font-size: 0.7rem !important
+    }
+
+    .ticker svg.fa-check {
+        position: absolute;
+        top: 1rem;
+        right: 0.5rem;
+    }
+
+    .card.ticker {
+        cursor: pointer;
+    }
+</style>
+{% comment %} <div class="bg-blue"> {% endcomment %}
+    <section id="menu-top">
+
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between py-3 mb-5 border-bottom">
+                <div id="title">
+                    <h4>Olá, {{ request.user.short_name }}</h4>
+                </div>
+                <div id="logout">
+                    <a href="{% url 'logout' %}" class="btn btn-secondary text-uppercase">Sair</a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section>
+        <div class="container-fluid">
+            <div class="me-auto">
+                {% bootstrap_messages %}
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-7 offset-md-1">
+                    <div class="bg-light">
+                        {% include 'core/partial/_btn.html' %}
+                        <div class="group-cards text-dark px-4">
+                            {% include 'core/partial/_cards.html' %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4" id="box-chart">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+    </section>
+    {% comment %}
+</div> {% endcomment %}
+
+
+
+<div class="modal" tabindex="-1" id="modal-uvt">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'assets/js/autocomplete/autocomplete.js' %}"></script>
+<script src="{% static 'assets/js/autocomplete/option_menu.js' %}"></script>
+
+
+<script>
+    new Autocomplete('#search-input-add', {
+        minLength: 3,
+        search: input => {
+            const url = `{% url 'ticker_search' %}?s=${input}&option=add`
+            return new Promise(resolve => {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        resolve(data.result)
+                    })
+            })
+        },
+    })
+</script>
+<script>
+    new Autocomplete('#search-input-del', {
+        minLength: 3,
+        search: input => {
+            const url = `{% url 'ticker_search' %}?s=${input}&option=del`
+            return new Promise(resolve => {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        resolve(data.result)
+                    })
+            })
+        },
+    })
+</script>
+
+<script src="{% static 'assets/js/charts/chart.js' %}" type="text/javascript"></script>
+
+
+
+{% endblock js %}

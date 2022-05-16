@@ -1,0 +1,36 @@
+{% load static bootstrap5 custom_filters %}
+
+<div class="row row-cols-1 row-cols-md-2 p-4 text-uppercase">
+    <form action="{% url 'ticker_update' %}" method="post">
+        {% csrf_token %}
+        <div id='search-input-add' class="w-100 mb-2">
+            <input type="text" name='ticker' id='id_ticker' class="form-control bg-light border-1 small"
+                placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2" required>
+            <ul class='autocomplete-result-list'
+                style='background-color: #FFFFFF; padding-top:20px;padding-bottom: 20px; border-radius: 0 0 15px 15px; position: relative; z-index: 9999'
+                id="autocomplete-result-list-menu">
+            </ul>
+            <input type="text" name="user" id="id_user" value="{{ request.user.pk }}" hidden="true">
+
+        </div>
+        <button type="submit" class="btn btn-success w-100 mb-4 text-uppercase">Adicionar</button>
+
+    </form>
+    <form action="{% url 'ticker_delete' %}" method="post">
+        {% csrf_token %}
+        <div id='search-input-del' class="w-100 mb-2">
+            <input type="text" name='ticker' id='id_ticker' class="form-control bg-light border-1 small"
+                placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2" required>
+            <ul class='autocomplete-result-list'
+                style='background-color: #FFFFFF; padding-top:20px;padding-bottom: 20px; border-radius: 0 0 15px 15px; position: relative; z-index: 9999'
+                id="autocomplete-result-list-menu">
+            </ul>
+            <input type="text" name="user" id="id_user" value="{{ request.user.pk }}" hidden="true">
+
+        </div>
+
+        <button type="submit" class="btn btn-danger w-100 mb-4 text-uppercase">Remover</button>
+
+    </form>
+
+</div>

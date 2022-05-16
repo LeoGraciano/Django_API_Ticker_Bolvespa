@@ -1,0 +1,47 @@
+{% load static bootstrap5 custom_filters %}
+
+<div class="row row-cols-1 row-cols-md-2">
+    {% for obj in object_list %}
+
+    {% for tk in obj.ticker.all %}
+    <div class="col mb-3">
+        <div class="card ticker" data-url="{% url 'ticker_data' tk.pk %}">
+            <div class="card-body">
+                <div class="row row-cols-2 align-items-center">
+                    <img src="{{tk.logo}}" alt="{{tk.name}}" class="img-fluid">
+                    <div class="ticker d-relative">
+                        <h5>{{tk.ticker}}</h5>
+                        <div class="i fa-solid fa-check text-success fa-3x d-none"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row row-cols-2 align-items-center">
+                    <strong class="text-{% if tk.close > tk.media %}success{% else%}danger{% endif %}">
+                        {{tk.close|money}} <i
+                            class="fa-solid fa-arrow-{% if tk.close > tk.media %}up{% else %}down{% endif %}"></i>
+                        <span class="text-muted">~{{tk.media}}</span>
+
+                    </strong>
+                    <div clas="d-flex flex-direction-column">
+                        <div class="">
+                            <span class="text-muted">
+                                Min:
+                                <strong>{{tk.min}}</strong>
+                            </span>
+                        </div>
+                        <div class="">
+                            <span class="text-muted">
+                                Max:
+                                <strong>{{tk.max}}</strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+    {% endfor %}
+</div>
