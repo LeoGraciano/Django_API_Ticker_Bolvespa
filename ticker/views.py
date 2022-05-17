@@ -1,4 +1,5 @@
 import json
+from webbrowser import get
 from django.core.serializers.json import DjangoJSONEncoder
 from django.forms.models import model_to_dict
 from django.shortcuts import get_object_or_404, redirect, render
@@ -13,6 +14,7 @@ from django.contrib import messages
 from django.template.loader import render_to_string
 from core.models import UserVsTicker
 from core.forms import UserVsTickerForm
+from ticker.tasks import task_ticker_update_all
 from .models import HistoricTicker, Ticker
 from django.db.models import F, Q, Max, Value
 
@@ -156,7 +158,13 @@ def ticker_data(request, ticker_pk):
     tickers = HistoricTicker.objects.filter(
         ticker__pk=ticker_pk).order_by('dt')
 
+    task_ticker_update_all(tickers.values_list('ticker__ticker',flat=True))
+
     ticker_list = [model_to_dict(x) for x in tickers]
+
+    if not ticker_list:
+        messages.warning(request, f'Historico não sincronizado')
+        return redirect('index')
 
     term = {
         'result': ticker_list,
