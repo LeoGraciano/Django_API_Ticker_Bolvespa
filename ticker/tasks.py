@@ -11,7 +11,7 @@ from utils.validation import isfloat
 from .models import HistoricTicker, Ticker
 
 
-@shared_task
+@shared_task(timeout=800000)
 def task_list_ticker():
     response = list_ticker()
 
@@ -36,7 +36,7 @@ def task_list_ticker():
                 )
 
 
-@shared_task
+@shared_task(timeout=800000)
 def task_ticker_update_all(list_tk=None):
     if Ticker.objects.all().exists():
         if not list_tk:

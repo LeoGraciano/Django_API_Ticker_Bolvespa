@@ -12,7 +12,7 @@ sys.modules['celery.utils.encoding'] = encoding
 
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plataforma.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plataforma.settings.base')
 
 app = Celery('plataforma')
 
@@ -48,11 +48,11 @@ app.conf.beat_schedule = {
 
     'update_list_ticker': {
         'task': 'ticker.tasks.task_list_ticker',
-        'schedule': schedules.crontab(hour='*/30')  # (minute=30, hour='3, 6')
+        'schedule': schedules.crontab(hour='1,12,18,22')  # (minute=30, hour='3, 6')
     },
     'task_ticker_update_all': {
         'task': 'ticker.tasks.task_ticker_update_all',
-        'schedule': schedules.crontab(hour='*/10')  # (minute=30, hour='3, 6')
+        'schedule': schedules.crontab(hour='*/30')  # (minute=30, hour='3, 6')
     },
 
 }

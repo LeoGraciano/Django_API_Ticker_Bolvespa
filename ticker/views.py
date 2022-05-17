@@ -112,16 +112,17 @@ def ticker_search(request):
     qs_total = (qs_ticker | qs_name).distinct()
 
     if option == 'add':
-        uvt = UserVsTicker.objects.filter(user=request.user)
-        if uvt.exists():
-            fill = uvt[0].ticker.all().values_list('ticker', flat=True)
+        uvt = UserVsTicker.objects.get_or_create(user=request.user)[0]
+        fill = ''
+        if uvt:
+            fill = uvt.ticker.all().values_list('ticker', flat=True)
 
         qs_total = qs_total.exclude(ticker__in=fill)
 
     elif option == 'del':
-        uvt = UserVsTicker.objects.filter(user=request.user)
-        if uvt.exists():
-            fill = uvt[0].ticker.all().values_list('ticker', flat=True)
+        uvt = UserVsTicker.objects.get_or_create(user=request.user)[0]
+        if uvt:
+            fill = uvt.ticker.all().values_list('ticker', flat=True)
 
         qs_total = qs_total.filter(ticker__in=fill)
 

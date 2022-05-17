@@ -44,14 +44,14 @@ def get_ticker(ticker=None) -> str:
 def list_ticker() -> str:
     url = "https://brapi.p.rapidapi.com/api/quote/list"
 
-    querystring = {"sortBy": "volume", "sortOrder": "desc", "limit": "1000"}
+    querystring = {"sortBy":"volume","sortOrder":"desc","limit":"1000"}
 
     headers = {
         "X-RapidAPI-Host": "brapi.p.rapidapi.com",
         "X-RapidAPI-Key": "44d04bf6e8msh63ae533faf01179p1004c4jsnab6f652a7f1e"
     }
 
-    response = requests.request(
-        "GET", url, headers=headers, params=querystring)
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
 
     return response

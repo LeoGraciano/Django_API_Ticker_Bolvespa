@@ -20,6 +20,10 @@ class IndexListView(LoginRequiredMixin, ListView):
         return qs
 
     def get_context_data(self, **kwargs):
+        if self.request.user.is_superuser:
+            from ticker.tasks import task_list_ticker
+            task_list_ticker()
+
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context

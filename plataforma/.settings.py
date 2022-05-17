@@ -1,6 +1,6 @@
 from pathlib import Path
-from decouple import config
-import django_on_heroku
+from decouple import config,Csv
+
 import os
 
 
@@ -8,11 +8,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 SECRET_KEY = config('SECRET_KEY')
-
+DJANGO_SETTINGS_MODULE = config('DJANGO_SETTINGS_MODULE')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
@@ -80,12 +80,15 @@ TEMPLATES = [
 ]
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": config('DB_ENGINE'),
+        "NAME": config('DB_NAME'),
+        "USER": config('DB_USER'),
+        "PASSWORD": config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        "PORT": config('DB_PORT')
     }
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -159,4 +162,3 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 CONTACT_EMAIL = config('CONTACT_EMAIL')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_on_heroku.settings(locals())
