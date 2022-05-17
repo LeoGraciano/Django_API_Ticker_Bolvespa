@@ -135,7 +135,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_BROKER_URL = 'redis://localhost:6379'
