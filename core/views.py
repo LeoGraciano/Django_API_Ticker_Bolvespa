@@ -7,7 +7,7 @@ from django.views.generic import TemplateView, CreateView, DeleteView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from core.models import UserVsTicker
 from ticker.tasks import task_ticker_update_all
-
+from ticker.tasks import task_list_ticker,get_ticker
 
 class IndexListView(LoginRequiredMixin, ListView):
     template_name = 'core/index.html'
@@ -17,12 +17,13 @@ class IndexListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self, *args, **kwargs):
         qs = super().get_queryset(*args, **kwargs).filter(user=self.request.user)
+        task_ticker_update_all(qs.values_list('ticker__ticker',flat=True))
         return qs
 
     def get_context_data(self, **kwargs):
         if self.request.user.is_superuser:
-            from ticker.tasks import task_list_ticker
             task_list_ticker()
+        
 
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
