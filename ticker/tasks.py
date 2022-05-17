@@ -23,7 +23,7 @@ def task_list_ticker():
             objs_data = _.copy()
             ticker = ''
             for k, v in _.items():
-                ticker = objs_data.pop('ticker', None)
+                ticker = objs_data.get('ticker', None)
                 if not hasattr(Ticker, k):
                     objs_data.pop(k)
                 elif isfloat(v):
