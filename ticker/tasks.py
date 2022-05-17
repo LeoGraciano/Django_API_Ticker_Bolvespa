@@ -28,7 +28,6 @@ def task_list_ticker():
                     objs_data.pop(k)
                 elif isfloat(v):
                     objs_data[v] = Decimal(v.replace(',', '.'))
-
             if ticker:
                 Ticker.objects.update_or_create(
                     ticker=ticker,

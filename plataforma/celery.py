@@ -46,13 +46,13 @@ def setup_periodic_tasks(sender, **kwargs):
 
 app.conf.beat_schedule = {
 
-    'update_list_ticker': {
-        'task': 'ticker.tasks.task_list_ticker',
-        'schedule': schedules.crontab(hour='1,12,18,22')  # (minute=30, hour='3, 6')
-    },
-    'task_ticker_update_all': {
-        'task': 'ticker.tasks.task_ticker_update_all',
-        'schedule': schedules.crontab(hour='*/30')  # (minute=30, hour='3, 6')
-    },
+    # 'update_list_ticker': {
+    #     'task': 'ticker.tasks.task_list_ticker',
+    #     'schedule': schedules.crontab(hour='1,12,18,22')  # (minute=30, hour='3, 6')
+    # },
+    # 'task_ticker_update_all': {
+    #     'task': 'ticker.tasks.task_ticker_update_all',
+    #     'schedule': schedules.crontab(hour='*/30')  # (minute=30, hour='3, 6')
+    # },
 
 }
